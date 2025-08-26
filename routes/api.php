@@ -26,3 +26,9 @@ Route::get('/', function () {
 Route::prefix('v1/auth')->namespace('Api\v1')->group(function () {
     Route::post('/register', [OnboardingController::class, 'addNewUser'])->name('registration');
 });
+
+Route::fallback(function (Request $request) {
+    return response()->json([
+        'message' => 'Record not found.'
+    ], 404);
+});
