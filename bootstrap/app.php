@@ -37,7 +37,10 @@ return Application::configure(basePath: dirname(__DIR__))
                     'message' => !empty($e->getMessage()) ? $e->getMessage() : 'Record not found.'
                 ], HTTP_NOT_FOUND);
             }
-            return response(view('errors.404'), 404);
+            //return response(view('errors.404'), 404);
+            return response()->json([
+                'message' => 'Record not found.'
+            ], HTTP_NOT_FOUND);
         });
 
         $exceptions->render(function (RouteNotFoundException $e, Request $request) {
